@@ -16,6 +16,6 @@
         </style>
     </head>
     <body class="antialiased">
-        <h1><b>Hello Shamim This is home page</b></h1>
+        <h1><b>Hello Shamim This is about page</b></h1>
     </body>
 </html>
