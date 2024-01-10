@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home',[
-        'page_name'=> 'Home Page',
-        'title'=>"Home"
-    ]);
+Route::get('/', function (Request $request) {
+    dd(
+        //"Laravel 9"
+        $request->path(),  // path name
+        $request->is('/'), // 1 0r 0
+
+        $request->fullUrl(),
+        $request->host(),
+        $request->httpHost(),
+        $request->schemeAndHttpHost(),
+
+        $request->routeIs('home'),  // 1 or 0
+        $request->header('X-Header-Name'),
+        $request->header('X-Header-Name', 'default'),
+        $request->bearerToken(),  // Used in API building
+
+        $request->ip(),
+        $request->prefers(['text/html', 'application/json']),
+    );
+    // return view('home',[
+    //     'page_name'=> 'Home Page',
+    //     'title'=>"Home"
+    // ]);
 })->name('home');
+
 
 Route::get('/about-page', function () {
     $title="About";
@@ -45,6 +65,9 @@ Route::get('/service-page', function () {
         $title="service";
     return view('service',compact('product','title'));
 })->name('service');
+
+
+
 
 
 // Route::get('/service-page/{service_id?}', function (string $service_id=null) {
