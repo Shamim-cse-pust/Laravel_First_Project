@@ -36,15 +36,23 @@ use Illuminate\Support\Facades\Route;
 
 // })->name('home');
 
+// Route::get('/', function (Request $request) {
+
+//     $data = [
+//         'page_name' => 'Home Page',
+//         'name' => 'Larael 9 Course'
+//     ];
+//     return response($data)
+//     ->header('Content-Type', 'application/json')
+//     ->cookie('My_IDCard', 'Mahmud Ibrahim', 3600);
+
+// })->name('home');
+
+
 Route::get('/', function (Request $request) {
 
-    $data = [
-        'page_name' => 'Home Page',
-        'name' => 'Larael 9 Course'
-    ];
-    return response($data)
-    ->header('Content-Type', 'application/json')
-    ->cookie('My_IDCard', 'Mahmud Ibrahim', 3600);
+
+    return redirect('/contact-page');
 
 })->name('home');
 
