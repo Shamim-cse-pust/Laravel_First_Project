@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @include('include.style')
 
-    <title>{{ $title }}</title>
+    <div class="container">
+        @yield('title')
+    </div>
+
+    <title>Hello</title>
   </head>
   <body>
     @include('include.navbar')

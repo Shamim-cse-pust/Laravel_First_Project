@@ -49,46 +49,46 @@ use Illuminate\Support\Facades\Route;
 // })->name('home');
 
 
-Route::get('/', function (Request $request) {
+// Route::get('/', function (Request $request) {
 
 
-    return redirect('/contact-page');
+//     return redirect('/contact-page');
 
-})->name('home');
+// })->name('home');
 
 
 // Route::get('/', function () {
 // return view('home',[
-    //     'page_name'=> 'Home Page',
-    //     'title'=>"Home"
-    // ]);
+//         'page_name'=> 'Home Page',
+//         'title'=>"Home"
+//     ]);
 // })->name('home');
 
-Route::get('/about-page', function () {
-    $title="About";
-    return view('about',[
-        'page_name'=> 'About Page',
-        'title'=>"About"
+// Route::get('/about-page', function () {
+//     $title="About";
+//     return view('about',[
+//         'page_name'=> 'About Page',
+//         'title'=>"About"
 
-    ]);
-})->name('about');
+//     ]);
+// })->name('about');
 
-Route::get('/contact-page', function () {
-    $page_name= "Contact Page";
-    $title="contact";
-    return view('contact',compact('page_name','title'));
-})->name('contact');
+// Route::get('/contact-page', function () {
+//     $page_name= "Contact Page";
+//     $title="contact";
+//     return view('contact',compact('page_name','title'));
+// })->name('contact');
 
-Route::get('/service-page', function () {
-    $page_name="Service Page";
-        $product=[
-            'name'=>"shamim",
-            'mobile'=>'01784766676',
-            'village'=>'mouhali'
-        ];
-        $title="service";
-    return view('service',compact('product','title'));
-})->name('service');
+// Route::get('/service-page', function () {
+//     $page_name="Service Page";
+//         $product=[
+//             'name'=>"shamim",
+//             'mobile'=>'01784766676',
+//             'village'=>'mouhali'
+//         ];
+//         $title="service";
+//     return view('service',compact('product','title'));
+// })->name('service');
 
 // Route::get('/service-page', function (Request $request) {
 //     $page_name="Service Page";
@@ -103,7 +103,7 @@ Route::get('/service-page', function () {
 //     ],200);
 // })->name('service');
 
-Route::get('/download-cv', function (Request $request) {
+Route::get('/download-cv', function () {
     // return response->download(public_path('/CV.pdf'),'CV.pdf');
     return response()->download(public_path('/CV.pdf'),'CV.pdf');
 });
@@ -131,3 +131,19 @@ Route::get('/download-cv', function (Request $request) {
 // Route::get('/user1/{id}', function (string $id) {
 //     return $id ;
 // })->where('id','.*');
+
+////route grouping
+Route::prefix('page')->name('manager.')->group(function(){
+    Route::get('/home', function(){
+        return view('home');
+    })->name('home');
+    Route::get('/contact', function(){
+        return view('contact');
+    })->name('contact');
+    Route::get('/about', function(){
+        return view('about');
+    })->name('about');
+    Route::get('/service', function(){
+        return view('service');
+    })->name('service');
+});
