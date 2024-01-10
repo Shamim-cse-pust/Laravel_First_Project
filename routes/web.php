@@ -14,31 +14,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function (Request $request) {
+//     dd(
+//         //"Laravel 9"
+//         $request->path(),  // path name
+//         $request->is('/'), // 1 0r 0
+
+//         $request->fullUrl(),
+//         $request->host(),
+//         $request->httpHost(),
+//         $request->schemeAndHttpHost(),
+
+//         $request->routeIs('home'),  // 1 or 0
+//         $request->header('X-Header-Name'),
+//         $request->header('X-Header-Name', 'default'),
+//         $request->bearerToken(),  // Used in API building
+
+//         $request->ip(),
+//         $request->prefers(['text/html', 'application/json']),
+//     );
+
+// })->name('home');
+
 Route::get('/', function (Request $request) {
-    dd(
-        //"Laravel 9"
-        $request->path(),  // path name
-        $request->is('/'), // 1 0r 0
 
-        $request->fullUrl(),
-        $request->host(),
-        $request->httpHost(),
-        $request->schemeAndHttpHost(),
+    $data = [
+        'page_name' => 'Home Page',
+        'name' => 'Larael 9 Course'
+    ];
+    return response($data)
+    ->header('Content-Type', 'application/json')
+    ->cookie('My_IDCard', 'Mahmud Ibrahim', 3600);
 
-        $request->routeIs('home'),  // 1 or 0
-        $request->header('X-Header-Name'),
-        $request->header('X-Header-Name', 'default'),
-        $request->bearerToken(),  // Used in API building
+})->name('home');
 
-        $request->ip(),
-        $request->prefers(['text/html', 'application/json']),
-    );
-    // return view('home',[
+
+// Route::get('/', function () {
+// return view('home',[
     //     'page_name'=> 'Home Page',
     //     'title'=>"Home"
     // ]);
-})->name('home');
-
+// })->name('home');
 
 Route::get('/about-page', function () {
     $title="About";
