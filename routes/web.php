@@ -57,38 +57,38 @@ use Illuminate\Support\Facades\Route;
 // })->name('home');
 
 
-// Route::get('/', function () {
-// return view('home',[
-//         'page_name'=> 'Home Page',
-//         'title'=>"Home"
-//     ]);
-// })->name('home');
+Route::get('/', function () {
+return view('home',[
+        'page_name'=> 'Home Page',
+        'title'=>"Home"
+    ]);
+})->name('home');
 
-// Route::get('/about-page', function () {
-//     $title="About";
-//     return view('about',[
-//         'page_name'=> 'About Page',
-//         'title'=>"About"
+Route::get('/about-page', function () {
+    $title="About";
+    return view('about',[
+        'page_name'=> 'About Page',
+        'title'=>"About"
 
-//     ]);
-// })->name('about');
+    ]);
+})->name('about');
 
-// Route::get('/contact-page', function () {
-//     $page_name= "Contact Page";
-//     $title="contact";
-//     return view('contact',compact('page_name','title'));
-// })->name('contact');
+Route::get('/contact-page', function () {
+    $page_name= "Contact Page";
+    $title="contact";
+    return view('contact',compact('page_name','title'));
+})->name('contact');
 
-// Route::get('/service-page', function () {
-//     $page_name="Service Page";
-//         $product=[
-//             'name'=>"shamim",
-//             'mobile'=>'01784766676',
-//             'village'=>'mouhali'
-//         ];
-//         $title="service";
-//     return view('service',compact('product','title'));
-// })->name('service');
+Route::get('/service-page', function () {
+    $page_name="Service Page";
+        $product=[
+            'name'=>"shamim",
+            'mobile'=>'01784766676',
+            'village'=>'mouhali'
+        ];
+        $title="service";
+    return view('service',compact('product','title'));
+})->name('service');
 
 // Route::get('/service-page', function (Request $request) {
 //     $page_name="Service Page";
@@ -133,17 +133,43 @@ Route::get('/download-cv', function () {
 // })->where('id','.*');
 
 ////route grouping
-Route::prefix('page')->name('manager.')->group(function(){
-    Route::get('/home', function(){
-        return view('home');
-    })->name('home');
-    Route::get('/contact', function(){
-        return view('contact');
-    })->name('contact');
-    Route::get('/about', function(){
-        return view('about');
-    })->name('about');
-    Route::get('/service', function(){
-        return view('service');
-    })->name('service');
+// Route::prefix('page')->name('manager.')->group(function(){
+//     Route::get('/home', function(){
+//         return view('home');
+//     })->name('home');
+//     Route::get('/contact', function(){
+//         return view('contact');
+//     })->name('contact');
+//     Route::get('/about', function(){
+//         return view('about');
+//     })->name('about');
+//     Route::get('/service', function(){
+//         return view('service');
+//     })->name('service');
+// });
+
+
+Route::get('/send-me-details', function (Request $request) {
+
+    $secreat_key="01784";
+    $user_key= $request->user_key;
+
+    $data=[
+        'name'=>"shamim",
+        'mobile'=>'01784766676',
+        'village'=>'mouhali'
+    ];
+
+
+    if($user_key==$secreat_key){
+    return response()->json([
+                "products"=> $data,
+            ],200);
+        }
+        else
+        {
+            return "Not Match";
+        }
+
+
 });
