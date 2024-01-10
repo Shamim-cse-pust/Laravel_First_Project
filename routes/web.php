@@ -79,18 +79,7 @@ Route::get('/contact-page', function () {
     return view('contact',compact('page_name','title'));
 })->name('contact');
 
-// Route::get('/service-page', function () {
-//     $page_name="Service Page";
-//         $product=[
-//             'name'=>"shamim",
-//             'mobile'=>'01784766676',
-//             'village'=>'mouhali'
-//         ];
-//         $title="service";
-//     return view('service',compact('product','title'));
-// })->name('service');
-
-Route::get('/service-page', function (Request $request) {
+Route::get('/service-page', function () {
     $page_name="Service Page";
         $product=[
             'name'=>"shamim",
@@ -98,10 +87,26 @@ Route::get('/service-page', function (Request $request) {
             'village'=>'mouhali'
         ];
         $title="service";
-    return response()->json([
-        "products"=> $product,
-    ],200);
+    return view('service',compact('product','title'));
 })->name('service');
+
+// Route::get('/service-page', function (Request $request) {
+//     $page_name="Service Page";
+//         $product=[
+//             'name'=>"shamim",
+//             'mobile'=>'01784766676',
+//             'village'=>'mouhali'
+//         ];
+//         $title="service";
+//     return response()->json([
+//         "products"=> $product,
+//     ],200);
+// })->name('service');
+
+Route::get('/download-cv', function (Request $request) {
+    // return response->download(public_path('/CV.pdf'),'CV.pdf');
+    return response()->download(public_path('/CV.pdf'),'CV.pdf');
+});
 
 
 
