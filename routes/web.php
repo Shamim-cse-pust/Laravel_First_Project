@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontendContoller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,26 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+
+Route::get('/', [FrontendContoller::class,'home'])->name('home');
+Route::get('/about-page', [FrontendContoller::class,'about'])->name('about');
+Route::get('/contact-page', [FrontendContoller::class,'contact'])->name('contact');
+Route::get('/service-page', [FrontendContoller::class,'service'] )->name('service');
+Route::get('/send-me-details', [FrontendContoller::class,'sendme'] )->name('sendme');
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Route::get('/', function (Request $request) {
 //     dd(
@@ -56,39 +77,6 @@ use Illuminate\Support\Facades\Route;
 
 // })->name('home');
 
-
-Route::get('/', function () {
-return view('home',[
-        'page_name'=> 'Home Page',
-        'title'=>"Home"
-    ]);
-})->name('home');
-
-Route::get('/about-page', function () {
-    $title="About";
-    return view('about',[
-        'page_name'=> 'About Page',
-        'title'=>"About"
-
-    ]);
-})->name('about');
-
-Route::get('/contact-page', function () {
-    $page_name= "Contact Page";
-    $title="contact";
-    return view('contact',compact('page_name','title'));
-})->name('contact');
-
-Route::get('/service-page', function () {
-    $page_name="Service Page";
-        $product=[
-            'name'=>"shamim",
-            'mobile'=>'01784766676',
-            'village'=>'mouhali'
-        ];
-        $title="service";
-    return view('service',compact('product','title'));
-})->name('service');
 
 // Route::get('/service-page', function (Request $request) {
 //     $page_name="Service Page";
@@ -149,27 +137,3 @@ Route::get('/download-cv', function () {
 // });
 
 
-Route::get('/send-me-details', function (Request $request) {
-
-    $secreat_key="01784";
-    $user_key= $request->user_key;
-
-    $data=[
-        'name'=>"shamim",
-        'mobile'=>'01784766676',
-        'village'=>'mouhali'
-    ];
-
-
-    if($user_key==$secreat_key){
-    return response()->json([
-                "products"=> $data,
-            ],200);
-        }
-        else
-        {
-            return "Not Match";
-        }
-
-
-});
