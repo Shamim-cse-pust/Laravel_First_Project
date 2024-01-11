@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontendContoller;
+use App\Http\Controllers\SingleactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,7 @@ Route::get('/', [FrontendContoller::class,'home'])->name('home');
 Route::get('/about-page', [FrontendContoller::class,'about'])->name('about');
 Route::get('/contact-page', [FrontendContoller::class,'contact'])->name('contact');
 Route::get('/service-page', [FrontendContoller::class,'service'] )->name('service');
-Route::get('/send-me-details', [FrontendContoller::class,'sendme'] )->name('sendme');
+Route::get('/send-me-details', SingleactionController::class )->name('sendme');
 
 
 
