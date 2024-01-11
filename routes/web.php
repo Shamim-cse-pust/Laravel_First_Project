@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontendContoller;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SingleactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,7 @@ Route::get('/about-page', [FrontendContoller::class,'about'])->name('about');
 Route::get('/contact-page', [FrontendContoller::class,'contact'])->name('contact');
 Route::get('/service-page', [FrontendContoller::class,'service'] )->name('service');
 Route::get('/send-me-details', SingleactionController::class )->name('sendme');
-
+Route::resource('/posts', PostController::class);
 
 
 
@@ -92,10 +93,10 @@ Route::get('/send-me-details', SingleactionController::class )->name('sendme');
 //     ],200);
 // })->name('service');
 
-Route::get('/download-cv', function () {
-    // return response->download(public_path('/CV.pdf'),'CV.pdf');
-    return response()->download(public_path('/CV.pdf'),'CV.pdf');
-});
+// Route::get('/download-cv', function () {
+//     // return response->download(public_path('/CV.pdf'),'CV.pdf');
+//     return response()->download(public_path('/CV.pdf'),'CV.pdf');
+// });
 
 
 
