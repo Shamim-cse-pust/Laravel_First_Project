@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FrontendContoller extends Controller
 {
     public function home()
     {
+        $user=User::all();
         return view('home',[
             'page_name'=> 'Home Page',
-            'title'=>"Home"
+            'title'=>"Home",
+            "user"=> $user
         ]);
     }
     public function about()
@@ -39,5 +42,5 @@ class FrontendContoller extends Controller
         $title="service";
     return view('service',compact('product','title'));
     }
-    
+
 }
