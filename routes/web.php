@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendContoller;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SingleactionController;
@@ -25,6 +26,7 @@ Route::get('/contact-page', [FrontendContoller::class,'contact'])->name('contact
 Route::get('/service-page', [FrontendContoller::class,'service'] )->name('service');
 Route::get('/send-me-details', SingleactionController::class )->name('sendme');
 Route::resource('/posts', PostController::class);
+Route::resource('/category',CategoryController::class);
 
 
 
