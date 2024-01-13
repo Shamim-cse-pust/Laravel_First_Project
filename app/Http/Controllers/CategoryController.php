@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CategoryStoreRequest;
 use App\Models\Categories;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Session;
 use function PHPUnit\Framework\returnSelf;
+use App\Http\Requests\CategoryStoreRequest;
 
 class CategoryController extends Controller
 {
@@ -31,13 +33,14 @@ class CategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request)
     {
-        dd($request->all());
+        //dd($request->all());
 
         Categories::create([
             'name'=> $request->category_name,
-            'slug'=> $request->category_slug,
+            'slug'=> Str::slug($request->category_name),
             'is_active'=> $request->filled('is_active'),
         ]);
+        Session::flash('status', 'Category created successfully!');
         return back() ;
     }
 
