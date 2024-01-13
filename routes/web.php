@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendContoller;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SingleactionController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::get('/service-page', [FrontendContoller::class,'service'] )->name('servic
 Route::get('/send-me-details', SingleactionController::class )->name('sendme');
 Route::resource('/posts', PostController::class);
 Route::resource('/category',CategoryController::class);
+Route::resource('/subcategory',SubCategoryController::class);
 
 
 
