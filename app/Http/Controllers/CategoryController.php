@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\returnSelf;
@@ -29,7 +30,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'category_name'=> 'required|string|alpha',
+            'category_slug'=> 'required|string|alpha',
+            'is_active'=> 'nullable',
+        ]);
+        dd($request->all());
+
+        Categories::create([
+            'name'=> $request->category_name,
+            'slug'=> $request->category_slug,
+            'is_active'=> $request->filled('is_active'),
+        ]);
+        return back() ;
     }
 
     /**
