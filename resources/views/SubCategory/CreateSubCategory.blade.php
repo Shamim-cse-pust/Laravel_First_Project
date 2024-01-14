@@ -14,6 +14,10 @@
 
 @section('content')
 <div class="row">
+    <div class="d-flex justify-content-start my-4">
+        <a href="{{ route('subcategory.index') }}" class="btn btn-info">Sub Categories</a>
+    </div>
+<div class="row">
     <div class="col-8 m-auto">
         @if (session('status'))
         <div class="bg-success text-white">

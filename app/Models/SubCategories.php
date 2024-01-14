@@ -16,4 +16,9 @@ class SubCategories extends Model
         'slug',
         'is_active',
     ];
+
+    public function Categories()
+    {
+        return $this->belongsTo(Categories::class);
+    }
 }

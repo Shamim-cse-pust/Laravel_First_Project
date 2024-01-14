@@ -15,7 +15,10 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $subcategories = SubCategories::with(['Categories'])->get(['id', 'name', 'categorie_id', 'created_at']);
+        $categories = Categories::all();
+        // return $subcategories.$categories;
+        return view('subcategory.index', compact('subcategories','categories'));
     }
 
     /**
