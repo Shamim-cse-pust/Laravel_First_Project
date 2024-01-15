@@ -17,8 +17,8 @@ class SubCategories extends Model
         'is_active',
     ];
 
-    public function Categories()
+    public function category()
     {
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Categories::class,'id');
     }
 }

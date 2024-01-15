@@ -22,7 +22,7 @@
             <a class="nav-link" href={{ route('category.create') }}>Create_Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href={{ route('subcategory.create') }}>Create_Category</a>
+            <a class="nav-link" href={{ route('subcategory.create') }}>SubCreate_Category</a>
           </li>
 
 

@@ -15,16 +15,21 @@
                 <th scope="col">Category Name</th>
                 <th scope="col">SubCategory Name</th>
                 <th scope="col">Created</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
                 @foreach ($subcategories as $subcategory)
                 <tr>
                     <th scope="row">{{ $subcategory->id }}</th>
-                    <td>{{ $subcategory->categorie_id }}</td>
+                    <td>{{ $subcategory->category->name }}</td>
                     <td>{{ $subcategory->name }}</td>
                     <td>{{ $subcategory->created_at->diffForHumans() }}</td>
-                  </tr>
+
+                    <td>
+                        <a href="{{ route('subcategory.edit',['subcategory' => $subcategory->id]) }}" class="btn btn-info">Edit</a>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>

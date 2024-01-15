@@ -15,10 +15,8 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $subcategories = SubCategories::with(['Categories'])->get(['id', 'name', 'categorie_id', 'created_at']);
-        $categories = Categories::all();
-        // return $subcategories.$categories;
-        return view('subcategory.index', compact('subcategories','categories'));
+        $subcategories = SubCategories::with(['category'])->get(['id', 'name', 'categorie_id', 'created_at']);
+        return view('subcategory.index', compact('subcategories'));
     }
 
     /**
@@ -46,8 +44,7 @@ class SubCategoryController extends Controller
         ]);
 
         $category=Categories::all();
-        //$id=$request->where('name', $request->category_name )->value('categorie_id');
-        //$id = Categories::where('name', $request->category_name)->value('id');
+
         SubCategories::create([
             'categorie_id'=> $request->category_name,
             'name'=> $request->subcategory_name,
@@ -63,7 +60,8 @@ class SubCategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $subcategory = SubCategories::find($id);
+        return view('subcategory.show', compact('subcategory'));
     }
 
     /**
@@ -71,7 +69,14 @@ class SubCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //dd($id);
+        $categories = Categories::get(['id', 'name']);
+        $subcategory = SubCategories::find($id);
+       // return $subcategory.$categories;
+        return view('subcategory.edit', compact(
+            'categories',
+            'subcategory'
+        ));
     }
 
     /**
@@ -79,7 +84,27 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'category_name'=> 'required|string',
+            'subcategory_name'=> 'required|string',
+
+            //'category_slug'=> 'required|string|alpha',
+
+            'is_active'=> 'nullable',
+        ]);
+       // dd($request->all());
+
+        $subcategory = SubCategories::find($id);
+
+        $subcategory->update([
+            'category_id' => $request->category_id,
+            'name' => $request->subcategory_name,
+            'slug' => Str::slug($request->subcategory_name),
+            'is_active' => $request->filled('is_active')
+        ]);
+
+        Session::flash('status', 'SubCategory updated successfully!');
+        return redirect()->route('subcategory.index');
     }
 
     /**
